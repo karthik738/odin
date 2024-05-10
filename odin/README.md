@@ -1,3 +1,0 @@
-# odin
-
-Hello odin
