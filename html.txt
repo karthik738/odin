@@ -1,0 +1,455 @@
+https://en.wikipedia.org/wiki/Rubber_duck_debugging
+
+https://www.theodinproject.com/guides/community/how_to_ask
+
+https://dontasktoask.com/
+
+https://www.100daysofcode.com/
+
+https://xyproblem.info/
+
+Habit Change. Learn how to successfully acquire good habits and how to quit bad ones.
+Book Recommendations & Takeaways. Get awesome book recommendations and golden nuggets of wisdom extracted from these books so you can put them into action right away!
+Personal Finance. Even tiny change you make about how you manage your money will bring mind-boggling results over time. Find out what these changes are!
+Starting a Business. Whether you’re a wanna-be indie maker or want to become the next Elon Musk, you will find some great resources here!
+Overcoming Creative Blocks. Together we explore how to beat the Resistance and finish that project you’ve been day-dreaming about.
+Minimalism Living with less has lots of benefits: reduced stress, less cleaning, better finances and a lot more!
+Other topics. Psychology, learning to code, alternative lifestyles and more.
+
+
+https://www.theodinproject.com/contributing
+
+https://old.codinginflow.com/google-programming-questions
+
+https://www.softcover.io/read/fc6c09de/unix_commands/basics#sec-basics-ls
+
+https://github.com/jlevy/the-art-of-command-line#readme
+
+https://www.learnenough.com/command-line-tutorial
+
+https://explainshell.com/
+
+https://flashcards.github.io/command_line/introduction.html
+
+https://www.youtube.com/playlist?list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ
+
+https://winscp.net/eng/docs/ssh_keys
+
+https://www.youtube.com/watch?v=AQDCe585Lnc
+
+
+https://www.theodinproject.com/lessons/foundations-motivation-and-mindset
+
+https://techcrunch.com/2014/05/24/dont-believe-anyone-who-tells-you-learning-to-code-is-easy/
+
+https://www.freecodecamp.org/news/things-i-wish-someone-had-told-me-when-i-was-learning-how-to-code-565fc9dcb329/
+
+https://jaredthenerd.com/2013/05/What-Makes-A-Good-Developer/
+
+https://www.quora.com/What-makes-an-excellent-web-developer-What-qualities-do-people-look-for-in-their-staff-consultants-and-freelance-contractors-when-they-hire-a-web-developer-to-build-a-Web-site
+
+https://www.quora.com/Computer-Programming/How-can-I-become-a-really-good-web-developer-starting-from-now-at-age-20-before-age-25
+
+https://codequizzes.wordpress.com/2013/04/28/deliberate-programming-practice/
+
+https://www.khanacademy.org/college-careers-more/talks-and-interviews/talks-and-interviews-unit/conversations-with-sal/a/the-learning-myth-why-ill-never-tell-my-son-hes-smart
+
+https://www.ted.com/talks/carol_dweck_the_power_of_believing_that_you_can_improve
+
+
+code .
+touch/nano file.txt
+When learning, your mind will consistently switch between focus mode and diffuse mode. Focus mode occurs when you are consciously focusing on learning, reading, watching videos, or working on a project. Diffuse mode occurs subconsciously, at times when you are not actively learning, such as when you’re doing the dishes, exercising, or sleeping. In this state, your mind goes about the business of connecting what you have been learning to the other things you know. This is where breakthroughs happen.
+
+git config --global user.name "Your Name"
+git config --global user.email "yourname@example.com"
+
+git config --global user.email "123456789+odin@users.noreply.github.com" # Remember to use your own private GitHub email here.
+
+GitHub recently changed the default branch on new repositories from master to main. Change the default branch for Git using this command:
+git config --global init.defaultBranch main
+
+To enable colorful output with git, type
+
+git config --global color.ui auto
+
+You’ll also likely want to set your default branch reconciliation behavior to merging.
+git config --global pull.rebase false
+
+
+git config --get user.name
+git config --get user.email
+
+macOS Users: Run these two commands to tell Git to ignore .DS_Store files, which are automatically created when you use Finder to look into a folder. .DS_Store files are invisible to the user and hold custom attributes or metadata (like thumbnails) for the folder, and if you don’t configure Git to ignore them, pesky .DS_Store files will show up in your commits. Remember to copy and paste each of these commands into your terminal.
+
+echo .DS_Store >> ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
+
+Step 2.3: Create an SSH key
+An SSH key is a cryptographically secure identifier. It’s like a really long password used to identify your machine. GitHub uses SSH keys to allow you to upload to your repository without having to type in your username and password every time.
+
+First, we need to see if you have an Ed25519 algorithm SSH key already installed. Type this into the terminal and check the output with the information below:
+
+ls ~/.ssh/id_ed25519.pub
+
+If a message appears in the console containing the text “No such file or directory”, then you do not yet have an Ed25519 SSH key, and you will need to create one. If no such message has appeared in the console output, you can proceed to step 2.4.
+
+To create a new SSH key, run the following command inside your terminal.
+
+ssh-keygen -t ed25519
+
+When it prompts you for a location to save the generated key, just push Enter.
+Next, it will ask you for a password; enter one if you wish, but it’s not required.
+
+Step 2.4: Link your SSH key with GitHub
+Now, you need to tell GitHub what your SSH key is so that you can push your code without typing in a password every time.
+
+First, you’ll navigate to where GitHub receives our SSH key. Log into GitHub and click on your profile picture in the top right corner. Then, click on Settings in the drop-down menu.
+
+Next, on the left-hand side, click SSH and GPG keys. Then, click the green button in the top right corner that says New SSH Key. Name your key something that is descriptive enough for you to remember what device this SSH key came from, for example linux-ubuntu. Leave this window open while you do the next steps.
+
+Now you need to copy your public SSH key. To do this, we’re going to use a command called cat to read the file to the console. (Note that the .pub file extension is important in this case.)
+
+cat ~/.ssh/id_ed25519.pub
+Highlight and copy the entire output from the command. If you followed the instructions above, the output will likely begin with ssh-ed25519 and end with your username@hostname.
+
+Now, go back to GitHub in your browser window and paste the key you copied into the key field. Keep the key type as Authentication Key and then, click Add SSH key. You’re done! You’ve successfully added your SSH key!
+
+Step 2.5 Testing your key
+Follow the GitHub directions for testing your SSH connection. Make sure the fingerprint output in the terminal matches one of the four GitHub’s public fingerprints. (Don’t forget to omit the $ when you copy and paste the code!).
+
+You should see this response in your terminal: Hi username! You’ve successfully authenticated, but GitHub does not provide shell access. Don’t let GitHub’s lack of providing shell access trouble you. If you see this message, you’ve successfully added your SSH key and you can move on. If the output doesn’t correctly match up, then try going through these steps again or come to the Discord chat to ask for help.
+
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection?platform=linux
+
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
+
+C:\Users\kolah\.ssh
+
+
+
+Commands related to a remote repository:
+git clone git@github.com:USER-NAME/REPOSITORY-NAME.git
+git push or git push origin main (Both accomplish the same goal in this context)
+Commands related to the workflow:
+git add .
+git commit -m "A message describing what you have done to make this snapshot different"
+Commands related to checking status or log history
+git status
+git log
+The basic Git syntax is program | action | destination.
+
+For example,
+
+git add . is read as git | add | ., where the period represents everything in the current directory;
+git commit -m "message" is read as git | commit -m | "message"; and
+git status is read as git | status | (no destination).
+
+
+An atomic commit is a commit that includes changes related to only one feature or task of your program. There are two main reasons for doing this: first, if something you change turns out to cause some problems, it is easy to revert the specific change without losing other changes; and second, it enables you to write better commit messages. 
+
+If you are using Visual Studio Code (and you should be if you’re following this curriculum), there’s a way to ensure that if you use git commit without the message flag (-m), you won’t get stuck writing your commit message in Vim.
+
+Changing the default message editor is a good idea in case you accidentally omit the flag, unless you prefer using Vim. There is no downside to changing it, because you will have the option to write your commit messages in the terminal or in the comfort of VS Code.
+
+The following command will set this configuration. Type (or copy & paste) this command into your terminal and hit Enter.
+
+git config --global core.editor "code --wait"
+There will be no confirmation or any output on the terminal after entering this command.
+
+With that done, you can now choose to use either git commit -m "your message here" or git commit to type your message with Visual Studio Code!
+
+To make a commit with Visual Studio Code as the text editor, just type git commit. After you hit Enter a new tab in VS Code will open for you to write your commit message. You may provide more details on multiple lines as part of your commit message. After typing your commit message, save it Ctrl + S (Mac: Cmd + S) and close the tab. If you return to the command line, you will see your commit message and a summary of your changes.
+
+git remote -v on your command line. This will display the URL of the repository you created on GitHub, which is the remote for your local copy. You may have also noticed the word origin at the start of the git remote -v output, which is the name of your remote connection. The name “origin” is both the default and the convention for the remote repository.
+
+
+https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github
+
+https://git-scm.com/docs
+
+https://www.atlassian.com/git/tutorials/what-is-git
+
+
+https://content.red-badger.com/resources/what-is-git-and-github
+
+https://www.freecodecamp.org/news/html-css-and-javascript-explained-for-beginners/
+
+Using the correct tags can have a big impact on two aspects of your sites: how they are ranked in search engines; and how accessible they are to users who rely on assistive technologies, like screen readers, to use the internet.
+
+Some HTML elements do not have a closing tag. These elements just have a single tag, like: <br> or <img>. They are known as void elements because they are void of any content, there is nothing inside of them. No closing tag means they can’t wrap content like other tags do.
+
+We should always name the HTML file that will contain the homepage of our websites index.html. This is because web servers will by default look for an index.html page when users land on our websites – and not having one will cause big problems.
+
+After we declare the doctype, we need to provide an <html> element. This is what’s known as the root element of the document, meaning that every other element in the document will be a descendant of it.
+
+<html lang="en">
+
+lang specifies the language of the text content in that element. This attribute is primarily used for improving accessibility of the webpage. It allows assistive technologies, for example screen readers, to adapt according to the language and invoke correct pronunciation.
+
+The <head> element is where we put important meta-information about our webpages, and stuff required for our webpages to render correctly in the browser. Inside the <head>, we should not use any element that displays content on the webpage.
+
+Meta element
+We should always have the <meta> tag with the charset encoding of the webpage in the <head> element: <meta charset="utf-8">.
+
+Setting the encoding is very important because it ensures that the webpage will display special symbols and characters from different languages correctly in the browser.
+
+If we didn’t include a <title> element, the webpage’s title would default to its file name. In our case that would be index.html, which isn’t very meaningful for users; this would make it very difficult to find our webpage if the user has many browser tabs open.
+
+Validators ensure your markup is correct and are an excellent learning tool,
+https://validator.w3.org/
+
+<body>hello
+this is in a new line
+no it is not </body>
+
+When the browser encounters new lines like this in your HTML, it will compress them down into one single space. The result of this compression is that all of the text is clumped together into one long line.
+
+If we want to create paragraphs in HTML, we need to use the paragraph element, which will add a new line after each of our paragraphs. A paragraph element is defined by wrapping text content with a <p> tag.
+
+<body><p>hello</p>
+<p>this is in a new line</p>
+<p>yes it is </p> </body>
+
+An h1 heading should always be used for the heading of the overall page, and the lower level headings should be used as the headings for content in smaller sections of the page.
+
+The <strong> element makes text bold. It also semantically marks text as important; this affects tools, like screen readers, that users with visual impairments will rely on to use your website. The tone of voice on some screen readers will change to communicate the importance of the text within a strong element.
+
+Sometimes you will want to make text bold without giving it an important meaning. You’ll learn how to do that in the CSS lessons later in the curriculum.
+
+The <em> element makes text italic. It also semantically places emphasis on the text, which again may affect things like screen readers. To define an emphasised element we wrap text content in an <em> tag.
+
+We use indentation to make the level of nesting clear and readable for ourselves and other developers who will work with our HTML in the future. It is recommended to indent any child elements by two spaces.
+
+https://medium.com/@zac_heisey/when-to-use-strong-b-em-and-i-tags-in-your-markup-fa4d0af8affb
+
+<b></b> and <i></i> are deprecated elements and should not be used.they do not add sematics to the document 
+
+<mark> - Marked text
+<small> - Smaller text
+<del> - Deleted text
+<ins> - Inserted text
+<sub> - Subscript text
+<sup> - Superscript text
+
+The HTML <i> element defines a part of text in an alternate voice or mood. The content inside is typically displayed in italic.
+
+Tip: The <i> tag is often used to indicate a technical term, a phrase from another language, a thought, a ship name, etc.
+
+
+The HTML <em> element defines emphasized text. The content inside is typically displayed in italic.
+
+Tip: A screen reader will pronounce the words in <em> with an emphasis, using verbal stress.
+
+
+The HTML <del> element defines text that has been deleted from a document. Browsers will usually strike a line through deleted text:
+
+Example
+<p>My favorite color is <del>blue</del> red.</p>
+
+The HTML <mark> element defines text that should be marked or highlighted:
+
+Example
+<p>Do not forget to buy <mark>milk</mark> today.</p>
+
+The HTML <ins> element defines a text that has been inserted into a document. Browsers will usually underline inserted text:
+
+Example
+<p>My favorite color is <del>blue</del> <ins>red</ins>.</p>
+
+The HTML <sub> element defines subscript text. Subscript text appears half a character below the normal line, and is sometimes rendered in a smaller font. Subscript text can be used for chemical formulas, like H2O:
+
+The HTML <sup> element defines superscript text. Superscript text appears half a character above the normal line, and is sometimes rendered in a smaller font. Superscript text can be used for footnotes, like WWW[1]:
+
+compact Deprecated
+This Boolean attribute hints that the list should be rendered in a compact style
+Warning: Do not use this attribute, as it has been deprecated: use CSS instead. To give a similar effect as the compact attribute, the CSS property line-height can be used with a value of 80%.
+
+type :circle square
+Warning: Do not use this attribute, as it has been deprecated; use the CSS list-style-type property instead.
+
+
+reversed
+This Boolean attribute specifies that the list's items are in reverse order. Items will be numbered from high to low.
+
+start
+An integer to start counting from for the list items. Always an Arabic numeral (1, 2, 3, etc.), even when the numbering type is letters or Roman numerals. For example, to start numbering elements from the letter "d" or the Roman numeral "iv," use start="4".
+
+type
+Sets the numbering type:
+
+a for lowercase letters
+A for uppercase letters
+i for lowercase Roman numerals
+I for uppercase Roman numerals
+1 for numbers (default)
+The specified type is used for the entire list unless a different type attribute is used on an enclosed <li> element.
+
+Note: Unless the type of the list number matters (like legal or technical documents where items are referenced by their number/letter), use the CSS list-style-type property instead.
+
+The value attribute may be used on an individual <li> element within an ordered list to change its value within the list. The number of any list item appearing below a list item with a value attribute will be recalculated accordingly.
+
+As an example, if the second list item has a value attribute value of 9, the number on that list item marker will appear as if it is the ninth item. All subsequent list items will be numbered upwards from 9.
+
+1
+2
+3
+4
+5
+6
+<ol>
+  <li>Head north on N Halsted St</li>
+  <li value="9">Turn right on W Diversey Pkwy</li>
+  <li>Turn left on N Orchard St</li>
+</ol>
+
+<dl>
+  <dt>study</dt>
+  <dd>The devotion of time and attention to acquiring knowledge on an academic subject, especially by means of books</dd>
+  <dt>design</dt>
+  <dd>A plan or drawing produced to show the look and function or workings of a building, garment, or other object before it is built or made</dd>
+  <dd>Purpose, planning, or intention that exists or is thought to exist behind an action, fact, or material object</dd>
+  <dt>business</dt>
+  <dt>work</dt>
+  <dd>A person's regular occupation, profession, or trade</dd>
+</dl>
+
+
+https://learn.shayhowe.com/html-css/creating-lists/
+
+
+By default, any text wrapped with an anchor tag without an href attribute will look like plain text. If the href attribute is present, the browser will give the text a blue color and underline it to signify it is a link.
+
+
+
+Opening links in a new tab
+The method shown above opens links in the same tab as the webpage containing them. This is the default behaviour of most browsers and it can be changed relatively easily. All we need is another attribute: the target attribute.
+
+While href specifies the destination link, target specifies where the linked resource will be opened. If it is not present, then, by default, it will take on the _self value which opens the link in the current tab. To open the link in a new tab or window (depends on browser settings) you can set it to _blank as follows:
+
+<a href="https://www.theodinproject.com/about" target="_blank" rel="noopener noreferrer">About The Odin Project</a>
+You may have noticed that we snuck in the rel attribute above. This attribute is used to describe the relation between the current page and the linked document.
+
+The noopener value prevents the opened link from gaining access to the webpage from which it was opened. The noreferrer value prevents the opened link from knowing which webpage or resource has a link (or ‘reference’) to it. It also includes the noopener behaviour and thus can be used by itself as well.
+
+Why do we need this added behaviour for opening links in new tabs? Security reasons. The prevention of access that is caused by noopener prevents phishing attacks where the opened link may change the original webpage to a different one to trick users. This is referred to as tabnabbing. Adding the noreferrer value can be done if you wish to not let the opened link know that your webpage links to it.
+
+Note that you may be fine if you forget to add rel="noopener noreferrer" since more recent versions of browsers provide this security if only target="_blank" is present. Nevertheless, in line with good coding practices and to err on the side of caution, it is recommended to always pair a target="_blank" with a rel="noopener noreferrer".
+
+https://www.ibm.com/topics/phishing
+
+https://owasp.org/www-community/attacks/Reverse_Tabnabbing
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#security_and_privacy
+
+Links to pages on other websites on the internet are called absolute links. A typical absolute link will be made up of the following parts: protocol://domain/path. An absolute link will always contain the protocol and domain of the destination.
+
+We’ve already seen an absolute link in action. The link we created to The Odin Project’s About page earlier was an absolute link as it contains the protocol and domain.
+
+https://www.theodinproject.com/about
+
+Relative links
+Links to other pages within our own website are called relative links. Relative links do not include the domain name, since it is another page on the same site, it assumes the domain name will be the same as the page we created the link on.
+
+Relative links only include the file path to the other page, relative to the page you are creating the link on. This is quite abstract, let’s see this in action using an example.
+
+Within the odin-links-and-images directory, create another HTML file named about.html and paste the following code into it:
+
+
+Prepending ./ before the link will in most cases prevent such issues. By adding ./ you are specifying to your code that it should start looking for the file/directory relative to the current directory.
+
+  <h1>Homepage</h1>
+  <a href="./pages/about.html">About</a>
+
+
+To go to the parent directory we need to use two dots in the relative filepath like this: ../. Let’s see this in action, within the body of the about.html file, add the following image below the heading we added earlier:
+
+<img src="../images/dog.jpg">
+
+First, we are going to the parent directory of the pages directory which is odin-links-and-images.
+Then, from the parent directory, we can go into the images directory.
+Finally, we can access the dog.jpg file.
+
+The alt attribute is used to describe an image. It will be used in place of the image if it cannot be loaded. It is also used with screen readers to describe what the image is to visually impaired users.
+
+While not strictly required, specifying height and width attributes in image tags helps the browser layout the page without causing the page to jump and flash.
+
+It is a good habit to always specify these attributes on every image, even when the image is the correct size or you are using CSS to modify it.
+
+without http in the href of <a> tag , it will search our directory for the resource 
+
+space - %20
+
+https://internetingishard.netlify.app/html-and-css/links-and-images/#image-formats
+
+images - jpg - photos
+gif - animations 
+png - logos
+svg - best for all purpose  
+
+https://internetingishard.netlify.app/html-and-css/links-and-images/
+
+https://www.itpro.com/609724/google-apologises-after-blacklisting-entire-internet
+
+https://css-tricks.com/use-target_blank/
+
+
+Having a good commit message history will allow you (or other developers working on your code) to quickly see what changes were made and why. This is useful if a bug is found in the code that needs to be fixed!
+
+Having a good commit message history will also be helpful if you come back to a project you were working on after stepping away from it for a while. You likely won’t remember your thought process and changes made when initially writing out the code.
+
+Effective commits consist of two separate parts: a subject, and a body:
+
+Subject
+A brief summary of the change you made to the project.
+
+This is the change I made to the codebase.
+GitHub has a 72-character limit so we recommend keeping your commits’ subject to within this amount.
+
+Body
+A concise yet clear description of what you did.
+
+Describe the problem your commit solves and how.
+Now that we learned the secret to creating a good commit message, let’s try and fix the commit message from earlier:
+
+Add missing link and alt text to the company's logo
+
+Screen readers won't read the images to users with disabilities without this information
+
+Separates the subject from the body with a new/blank line. This is a best practice we highly recommend following. It makes commit messages easier for other developers to read.
+
+When writing code, it’s considered best practice to commit every time you have a meaningful change in the code. This will create a timeline of your progress and show that your finished code didn’t appear out of nowhere.
+
+https://cbea.ms/git-commit/
+
+https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+
+Use an active voice: “Fix card generator”.
+Avoid using vague commit messages such as “saved” or “updated”.
+Commit early and often!
+
+
+https://www.conventionalcommits.org/en/v1.0.0/
+
+https://www.youtube.com/watch?v=OJqUWvmf4gg
+
+
+https://brutalistwebsites.com/
+
+https://www.freecodecamp.org/learn/responsive-web-design/
+
+https://www.freecodecamp.org/news/html-crash-course/
+
+https://www.freecodecamp.org/news/use-css-selectors-to-style-webpage/
+
+https://www.freecodecamp.org/news/how-to-manipulate-the-dom-beginners-guide/
+
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
+
+https://www.youtube.com/watch?v=PkZNo7MFNFg
+
+https://www.youtube.com/watch?v=apGV9Kg7ics
+
+https://www.atlassian.com/git/tutorials/what-is-git
