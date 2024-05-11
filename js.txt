@@ -1,0 +1,360 @@
+** As you might have noticed by running JavaScript code in the console, the console prints the result of the code it executes (called a return statement). You will learn more about these in the next lessons, however for now it is good to remember that a declaration with an assignment (such as let b = 7 * a) returns undefined and so you cannot declare and assign a value to a variable and read its value in the same line.*
+
+It’s interesting to note that there exist so-called pure functional programming languages, such as Haskell, that forbid changing variable values.
+
+In such languages, once the value is stored “in the box”, it’s there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can’t reuse the old one.
+
+Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.
+
+let $ = 1; // declared a variable with the name "$"
+let _ = 2; // and now a variable with the name "_"
+
+alert($ + _); // 3
+
+It is possible to use any language, including Cyrillic letters, Chinese logograms and so on, like this:
+
+let имя = '...';
+let 我 = '...';
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we’re writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
+
+Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using let. This still works now if we don’t put use strict in our scripts to maintain compatibility with old scripts.
+
+// note: no "use strict" in this example
+
+num = 5; // the variable "num" is created if it didn't exist
+
+alert(num); // 5
+This is a bad practice and would cause an error in strict mode:
+
+"use strict";
+
+num = 5; // error: num is not defined
+
+In other words, capital-named constants are only used as aliases for “hard-coded” values.
+
+Use human-readable names like userName or shoppingCart.
+Stay away from abbreviations or short names like a, b, and c, unless you know what you’re doing.
+Make names maximally descriptive and concise. Examples of bad names are data and value. Such names say nothing. It’s only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
+
+alert( '1' + 2 ); // "12"
+alert( 2 + '1' ); // "21"
+See, it doesn’t matter whether the first operand is a string or the second one.
+
+Here’s a more complex example:
+
+alert(2 + 2 + '1' ); // "41" and not "221"
+
+Here, operators work one after another. The first + sums two numbers, so it returns 4, then the next + adds the string 1 to it, so it’s like 4 + '1' = '41'.
+
+alert('1' + 2 + 2); // "122" and not "14"
+Here, the first operand is a string, the compiler treats the other two operands as strings too. The 2 gets concatenated to '1', so it’s like '1' + 2 = "12" and "12" + 2 = "122".
+
+The binary + is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+
+Here’s the demo for subtraction and division:
+
+alert( 6 - '2' ); // 4, converts '2' to a number
+alert( '6' / '2' ); // 3, converts both operands to numbers
+
+The plus + exists in two forms: the binary form that we used above and the unary form.
+
+The unary plus or, in other words, the plus operator + applied to a single value, doesn’t do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+
+For example:
+
+// No effect on numbers
+let x = 1;
+alert( +x ); // 1
+
+let y = -2;
+alert( +y ); // -2
+
+// Converts non-numbers
+alert( +true ); // 1
+alert( +"" );   // 0
+It actually does the same thing as Number(...), but is shorter.
+
+The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
+
+The binary plus would add them as strings:
+
+let apples = "2";
+let oranges = "3";
+
+alert( apples + oranges ); // "23", the binary plus concatenates strings
+
+If we want to treat them as numbers, we need to convert and then sum them:
+
+let apples = "2";
+let oranges = "3";
+
+// both values converted to numbers before the binary plus
+alert( +apples + +oranges ); // 5
+
+// the longer variant
+// alert( Number(apples) + Number(oranges) ); // 5
+
+All operators in JavaScript return a value. That’s obvious for + and -, but also true for =.
+
+The call x = value writes the value into x and then returns it.
+
+Here’s a demo that uses an assignment as part of a more complex expression:
+
+let a = 1;
+let b = 2;
+
+let c = 3 - (a = b + 1);
+
+alert( a ); // 3
+alert( c ); // 0
+
+Another interesting feature is the ability to chain assignments:
+
+let a, b, c;
+
+a = b = c = 2 + 2;
+
+alert( a ); // 4
+alert( b ); // 4
+alert( c ); // 4
+
+Chained assignments evaluate from right to left. First, the rightmost expression 2 + 2 is evaluated and then assigned to the variables on the left: c, b and a. At the end, all the variables share a single value.
+
+Increment/decrement can only be applied to variables. Trying to use it on a value like 5++ will give an error.
+
+https://javascript.info/operators#string-concatenation-with-binary
+
+NaN is a JavaScript reserved word indicating that a number is not a legal number.
+
+Trying to do arithmetic with a non-numeric string will result in NaN (Not a Number):
+
+Example
+let x = 100 / "Apple";
+
+You can use the global JavaScript function isNaN() to find out if a value is a not a number:
+
+Example
+let x = 100 / "Apple";
+isNaN(x);
+
+NaN is a number: typeof NaN returns number:
+
+let myNumber = 2;
+// Execute until Infinity
+while (myNumber != Infinity) {
+  myNumber = myNumber * myNumber;
+}
+
+Infinity is a number: typeof Infinity returns number.
+
+let myNumber = 32;
+myNumber.toString(32);
+myNumber.toString(16);
+myNumber.toString(12);
+myNumber.toString(10);
+myNumber.toString(8);
+myNumber.toString(2);
+
+Do not create Number objects.
+
+The new keyword complicates the code and slows down execution speed.
+
+Number Objects can produce unexpected results:
+
+When using the == operator, x and y are equal:
+
+let x = 500;
+let y = new Number(500);
+When using the === operator, x and y are not equal.
+
+let x = 500;
+let y = new Number(500);
+
+// Loose equality
+true == 1 // true
+false == 0 // true
+null == undefined // true
+
+// Strict equality
+true === 1 // false
+false === 0 // false
+null === undefined // false
+
+https://javascript.info/var
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript
+
+Besides regular numbers, there are so-called “special numeric values” which also belong to this data type: Infinity, -Infinity and NaN.
+
+
+alert( 1 / 0 ); // Infinity
+Or just reference it directly:
+
+alert( Infinity ); // Infinity
+
+NaN represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
+
+alert( "not a number" / 2 ); // NaN, such division is erroneous
+NaN is sticky. Any further mathematical operation on NaN returns NaN:
+
+alert( NaN + 1 ); // NaN
+alert( 3 * NaN ); // NaN
+alert( "not a number" / 2 - 1 ); // NaN
+
+So, if there’s a NaN somewhere in a mathematical expression, it propagates to the whole result (there’s only one exception to that: NaN ** 0 is 1).
+
+Doing maths is “safe” in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
+
+The script will never stop with a fatal error (“die”). At worst, we’ll get NaN as the result.
+
+Special numeric values formally belong to the “number” type. Of course they are not numbers in the common sense of this word.
+
+In some languages, there is a special “character” type for a single character. For example, in the C language and in Java it is called “char”.
+
+In JavaScript, there is no such type. There’s only one type: string. A string may consist of zero characters (be empty), one character or many of them.
+
+let age = null;
+In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages.
+
+It’s just a special value which represents “nothing”, “empty” or “value unknown”.
+
+The code above states that age is unknown.
+
+The meaning of undefined is “value is not assigned”.
+
+If a variable is declared, but not assigned, then its value is undefined:
+
+let age;
+
+alert(age); // shows "undefined"
+Technically, it is possible to explicitly assign undefined to a variable:
+
+let age = 100;
+
+// change the value to undefined
+age = undefined;
+
+alert(age); // "undefined"
+…But we don’t recommend doing that. Normally, one uses null to assign an “empty” or “unknown” value to a variable, while undefined is reserved as a default initial value for unassigned things.
+
+typeof Math // "object"  (1)
+
+typeof null // "object"  (2)
+
+typeof alert // "function"  (3)
+The last three lines may need additional explanation:
+
+Math is a built-in object that provides mathematical operations. We will learn it in the chapter Numbers. Here, it serves just as an example of an object.
+The result of typeof null is "object". That’s an officially recognized error in typeof, coming from very early days of JavaScript and kept for compatibility. Definitely, null is not an object. It is a special value with a separate type of its own. The behavior of typeof is wrong here.
+The result of typeof alert is "function", because alert is a function. We’ll study functions in the next chapters where we’ll also see that there’s no special “function” type in JavaScript. Functions belong to the object type. But typeof treats them differently, returning "function". That also comes from the early days of JavaScript. Technically, such behavior isn’t correct, but can be convenient in practice.
+
+The typeof(x) syntax
+You may also come across another syntax: typeof(x). It’s the same as typeof x.
+
+To put it clear: typeof is an operator, not a function. The parentheses here aren’t a part of typeof. It’s the kind of parentheses used for mathematical grouping.
+
+Usually, such parentheses contain a mathematical expression, such as (2 + 2), but here they contain only one argument (x). Syntactically, they allow to avoid a space between the typeof operator and its argument, and some people like it.
+
+Some people prefer typeof(x), although the typeof x syntax is much more common.
+
+slice(start, end)
+substring(start, end)
+substr(start, length)
+
+slice() extracts a part of a string and returns the extracted part in a new string.
+
+The method takes 2 parameters: start position, and end position (end not included).
+
+If a parameter is negative, the position is counted from the end of the string:
+
+The difference is that start and end values less than 0 are treated as 0 in substring().
+
+substr() is similar to slice().
+
+The difference is that the second parameter specifies the length of the extracted part.
+
+If the first parameter is negative, the position counts from the end of the string.
+
+let text1 = "Hello";
+let text2 = "World";
+let text3 = text1.concat(" ", text2);
+
+Pad a string with "0" until it reaches the length 4:
+
+let text = "5";
+let padded = text.padStart(4,"0");
+
+trim 
+trimStart
+trimEnd
+
+The repeat() method returns a string with a number of copies of a string.
+
+The repeat() method returns a new string.
+
+The repeat() method does not change the original string.
+
+Examples
+Create copies of a text:
+
+let text = "Hello world!";
+let result = text.repeat(2);
+
+replace
+replaceAll
+split
+toLowerCase
+toUpperCase
+at
+charAt
+
+When using bracket notation for character access, attempting to delete or assign a value to these properties will not succeed. The properties involved are neither writable nor configurable. (See Object.defineProperty() for more information.)
+
+String primitives and String objects also give different results when using eval(). Primitives passed to eval are treated as source code; String objects are treated as all other objects are, by returning the object. For example:
+
+JS
+Copy to Clipboard
+const s1 = "2 + 2"; // creates a string primitive
+const s2 = new String("2 + 2"); // creates a String object
+console.log(eval(s1)); // returns the number 4
+console.log(eval(s2)); // returns the string "2 + 2"
+For these reasons, the code may break when it encounters String objects when it expects a primitive string instead, although generally, authors need not worry about the distinction.
+
+A String object can always be converted to its primitive counterpart with the valueOf() method.
+
+JS
+Copy to Clipboard
+console.log(eval(s2.valueOf())); // returns the number 4
+
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+
+alert( null == undefined ); // true
+For maths and other comparisons < > <= >=
+null/undefined are converted to numbers: null becomes 0, while undefined becomes NaN.
+
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+Mathematically, that’s strange. The last result states that "null is greater than or equal to zero", so in one of the comparisons above it must be true, but they are both false.
+
+The reason is that an equality check == and comparisons > < >= <= work differently. Comparisons convert null to a number, treating it as 0. That’s why (3) null >= 0 is true and (1) null > 0 is false.
+
+On the other hand, the equality check == for undefined and null is defined such that, without any conversions, they equal each other and don’t equal anything else. That’s why (2) null == 0 is false.
+
+alert( undefined > 0 ); // false (1)
+alert( undefined < 0 ); // false (2)
+alert( undefined == 0 ); // false (3)
+Why does it dislike zero so much? Always false!
+
+We get these results because:
+
+Comparisons (1) and (2) return false because undefined gets converted to NaN and NaN is a special numeric value which returns false for all comparisons.
+The equality check (3) returns false because undefined only equals null, undefined, and no other value.
+
+Treat any comparison with undefined/null except the strict equality === with exceptional care.
+Don’t use comparisons >= > < <= with a variable which may be null/undefined, unless you’re really sure of what you’re doing. If a variable can have these values, check for them separately.
+
+But that’s the key - .push() is not a String method, it’s an Array method. Hence, it is “not a function” that you can find as a String method. If we change .push() to .concat(), a proper String method, our code runs as intended!
+
+Make use of the console! console.log() is a popular choice for quick debugging. For more involved troubleshooting, using the debugger might be more appropriate, but using console.log() is great for getting immediate feedback without needing to step through your functions. There are also other useful methods such as console.table(), console.trace(), and more!
