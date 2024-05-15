@@ -1,0 +1,209 @@
+There is no need to use new Array().
+
+For simplicity, readability and execution speed, use the array literal method.
+
+
+Adding elements with high indexes can create undefined "holes" in an array:
+
+Example
+const fruits = ["Banana", "Orange", "Apple"];
+fruits[6] = "Lemon";  // Creates undefined "holes" in fruits
+
+arrays.push() , toString(),
+
+If you use named indexes, JavaScript will redefine the array to an object.
+
+After that, some array methods and properties will produce incorrect results.
+
+ Example:
+const person = [];
+person["firstName"] = "John";
+person["lastName"] = "Doe";
+person["age"] = 46;
+person.length;     // Will return 0
+person[0];         // Will return undefined
+
+
+In JavaScript, arrays use numbered indexes.  
+
+In JavaScript, objects use named indexes.
+
+Arrays are a special kind of objects, with numbered indexes.
+
+
+JavaScript does not support associative arrays.
+You should use objects when you want the element names to be strings (text).
+You should use arrays when you want the element names to be numbers.
+
+Arrays with named indexes are called associative arrays (or hashes).
+
+JavaScript does not support arrays with named indexes.
+
+In JavaScript, arrays always use numbered indexes.  
+
+// Create an array with one element ???
+const points = new Array(40);   //random garbage
+
+const points = [40];
+is not the same as:
+
+const points = new Array(40);
+
+// Create an array with one element:
+const points = [40];
+// Create an array with 40 undefined elements:
+const points = new Array(40);  
+
+The typeof operator returns object because a JavaScript array is an object.
+
+Solution 1:
+To solve this problem ECMAScript 5 (JavaScript 2009) defined a new method Array.isArray():
+
+Array.isArray(fruits);
+
+Solution 2:
+The instanceof operator returns true if an object is created by a given constructor:
+
+const fruits = ["Banana", "Orange", "Apple"];
+
+fruits instanceof Array;
+
+Many languages allows negative bracket indexing like [-1] to access elements from the end of an object / array / string.
+
+This is not possible in JavaScript, because [] is used for accessing both arrays and objects. obj[-1] refers to the value of key -1, not to the last property of the object.
+
+The at() method was introduced in ES2022 to solve this problem.
+
+The join() method also joins all array elements into a string.
+
+It behaves just like toString(), but in addition you can specify the separator:
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits.join(" * ");
+Result:
+
+Banana * Orange * Apple * Mango
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+The pop() method returns the value that was "popped out":
+
+The push() method returns the new array length:
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let length = fruits.push("Kiwi");
+
+The shift() method removes the first array element and "shifts" all other elements to a lower index.
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.shift();
+The shift() method returns the value that was "shifted out":
+
+The unshift() method adds a new element to an array (at the beginning), and "unshifts" older elements:
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon");
+The unshift() method returns the new array length:
+
+Using delete() leaves undefined holes in the array.
+
+Use pop() or shift() instead.
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+delete fruits[0];
+
+The concat() method creates a new array by merging (concatenating) existing arrays:
+
+Example (Merging Two Arrays)
+const myGirls = ["Cecilie", "Lone"];
+const myBoys = ["Emil", "Tobias", "Linus"];
+
+const myChildren = myGirls.concat(myBoys);
+
+The concat() method does not change the existing arrays. It always returns a new array.
+
+The concat() method can take any number of array arguments.
+
+The concat() method can also take strings as arguments:
+
+Example (Merging an Array with Values)
+const arr1 = ["Emil", "Tobias", "Linus"];
+const myChildren = arr1.concat("Peter"); 
+
+The copyWithin() method copies array elements to another position in an array:
+
+Copy to index 2, all elements from index 0:
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.copyWithin(2, 0);
+Copy to index 2, the elements from index 0 to 2:
+
+const fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+fruits.copyWithin(2, 0, 2);
+Note
+The copyWithin() method overwrites the existing values.
+
+The copyWithin() method does not add items to the array.
+
+The copyWithin() method does not change the length of the array.
+
+The flat() method creates a new array with sub-array elements concatenated to a specified depth.
+
+Example
+const myArr = [[1,2],[3,4],[5,6]];
+const newArr = myArr.flat();
+
+The splice() method adds new items to an array.
+
+The slice() method slices out a piece of an array.
+
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+The first parameter (2) defines the position where new elements should be added (spliced in).
+
+The second parameter (0) defines how many elements should be removed.
+
+The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+
+The splice() method returns an array with the deleted items:
+
+With clever parameter setting, you can use splice() to remove elements without leaving "holes" in the array:
+
+Example
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(0, 1);
+The first parameter (0) defines the position where new elements should be added (spliced in).
+
+The second parameter (1) defines how many elements should be removed.
+
+The rest of the parameters are omitted. No new elements will be added.
+
+The difference between the new toSpliced() method and the old splice() method is that the new method creates a new array, keeping the original array unchanged, while the old method altered the original array.
+
+Example
+const months = ["Jan", "Feb", "Mar", "Apr"];
+const spliced = months.toSpliced(0, 1);
+
+Slice out a part of an array starting from array element 1 ("Orange"):
+
+const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+const citrus = fruits.slice(1);
+Note
+The slice() method creates a new array.
+
+The slice() method does not remove any elements from the source array.
+
+The method then selects elements from the start argument, and up to (but not including) the end argument.
+
+JavaScript automatically converts an array to a comma separated string when a primitive value is expected.
+
+This is always the case when you try to output an array.
+
+All JavaScript objects have a toString() method.
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code

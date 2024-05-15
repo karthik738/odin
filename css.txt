@@ -288,3 +288,12 @@ https://developer.chrome.com/docs/devtools/css
 google fonts
 
 https://tailwindcss.com/docs/installation
+
+
+use classes for styling and ids for javascript 
+
+grouping selectors by comma 
+
+chaining selectors by . - 2 or more classes for one element
+
+descendant selectors - .recipe-card h2  --> use space for children
